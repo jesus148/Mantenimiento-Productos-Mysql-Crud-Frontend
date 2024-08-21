@@ -1,0 +1,43 @@
+
+
+<div class="container">
+
+
+  <div class="title">
+    <h4> Listado Productos </h4>
+
+    <!-- router link importar en este componente -->
+     <!-- diferencia de poner la barra
+      /add : http://localhost:4200/add
+      add : http://localhost:4200/jesus/add -->
+    <button type="button" class="btn btn-primary" routerLink="/add" routerLinkActive="router-link-active" >Agregar Producto</button>
+
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listProducts" class="table-active">
+        <th>{{ item.name }}</th>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.stock }}</td>
+        <td>
+          <!-- routerLink="/edit/{{item.id}} : ruta pero envio con parametro -->
+          <button type="button" class="btn btn-info btn-sm m-2" routerLink="/edit/{{item.id}}">Edit</button>
+          <button type="button" class="btn btn-secondary btn-sm">Delete </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
