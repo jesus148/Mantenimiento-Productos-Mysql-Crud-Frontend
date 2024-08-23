@@ -1,6 +1,6 @@
 
 
-56:40 (https://www.youtube.com/watch?v=INeJQ_5fwYM&t=753s)
+1:05:26 (https://www.youtube.com/watch?v=INeJQ_5fwYM&t=753s)
 
 1. jesus@DESKTOP-9F7O809 MINGW64 ~/Desktop/JESUS/ANGULAR/crud_ejercisio2/frontend (master)
 $ ng new frontend

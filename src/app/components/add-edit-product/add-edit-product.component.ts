@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { Product } from '../../interfaces/product';
 
 // decorador
 @Component({
@@ -45,7 +46,21 @@ export class AddEditProductComponent implements OnInit{
 
 
   addProduct(){
-    // imprimiendo valor del form
+    // formas de obtener de la data del form
+    // imprimiendo valor del form pa ver las propiedades
+    // console.log(this.form.value.name);
+    // console.log(this.form.get('name')?.value);
+
+    // juntando la data en un objeto pa guardar
+    const product:Product ={
+      name : this.form.value.name,
+      description : this.form.value.description,
+      price : this.form.value.price,
+      stock : this.form.value.stock
+    }
+
+    console.log(product);
+
 
   }
 
