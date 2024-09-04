@@ -46,9 +46,9 @@ export class ListProductsComponent implements OnInit {
 
   // metodo lista
   getListProducts(){
-    this._productoService.getListProducts().subscribe((data  :any)=>{
+    this._productoService.getListProducts().subscribe((data  )=>{
       console.log(data);
-      this.listProducts=data.listProduct;
+      this.listProducts=data;
     })
   }
 
