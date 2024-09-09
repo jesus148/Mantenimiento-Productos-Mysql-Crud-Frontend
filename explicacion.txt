@@ -60,3 +60,26 @@ $ ng new frontend
 
 6. crea manualmente folder > environments
                             y sus files
+
+
+
+7. instalar toastr para los mensajes
+ documentacion ---- https://www.npmjs.com/package/ngx-toastr
+  > PS C:\Users\JesúsArgelHuamanAnge\Desktop\Marco\angular\4_ejercisio\front\Mantenimiento-Productos-Mysql-Crud-> npm i ngx-toastr
+
+ > angular.json -- agregar esto
+             "styles": [
+              "src/styles.css",
+               "node_modules/ngx-toastr/toastr.css"
+            ],
+
+
+
+>  app.config.ts
+      provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers,
+     provideToastr({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })

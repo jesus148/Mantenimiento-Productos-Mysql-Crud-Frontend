@@ -4,6 +4,9 @@ import { provideRouter } from '@angular/router';
 // aca importar los routes
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +14,13 @@ export const appConfig: ApplicationConfig = {
     // router
     provideRouter(routes),
     // servicios rest
-    provideHttpClient()]
+    provideHttpClient(),
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers,
+    provideToastr({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
+  ]
 };

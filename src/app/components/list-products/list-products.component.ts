@@ -3,6 +3,8 @@ import { Product } from '../../interfaces/product';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 
 // decorador
 @Component({
@@ -12,7 +14,8 @@ import { ProductService } from '../../services/product.service';
     //importar esto para el listado
     RouterOutlet,
     CommonModule,
-    RouterLink
+    RouterLink,
+    ProgressBarComponent
   ],
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.css'
@@ -29,11 +32,13 @@ export class ListProductsComponent implements OnInit {
 
   listProducts: Product[] = []
 
+  loading: boolean = false;
+
 
 
   // inicia
   // _productoService : los service comienzan con _
-  constructor(private _productoService:ProductService){
+  constructor(private _productoService:ProductService ,  private toastr: ToastrService){
   }
 
 
@@ -46,11 +51,26 @@ export class ListProductsComponent implements OnInit {
 
   // metodo lista
   getListProducts(){
-    this._productoService.getListProducts().subscribe((data  )=>{
+
+    this.loading = true;
+    this._productoService.getListProducts().subscribe((data : any )=>{
       console.log(data);
-      this.listProducts=data;
+      this.loading= false;
+      this.listProducts=data.listProduct;
     })
   }
+
+
+
+
+  deleteProduct(id: number) {
+    this.loading = true;
+    this._productoService.deteleProduct(id).subscribe(() => {
+      this.getListProducts();
+      this.toastr.warning('El producto fue eliminado con exito', 'Producto eliminado');
+    })
+  }
+
 
 
 

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Product } from '../../interfaces/product';
+import { ProductService } from '../../services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 // decorador
 @Component({
@@ -25,10 +27,21 @@ export class AddEditProductComponent implements OnInit{
   // validaciones
   form : FormGroup;
 
+  loading: boolean = false;
+
+  id: number;
+  operacion: string = 'Agregar ';
+
+
 
 
   // inicia
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder ,
+    private _productService: ProductService ,
+    private router: Router,
+    private toastr: ToastrService,
+    private aRouter: ActivatedRoute
+  ){
     // validaciones
     this.form= this.fb.group({
       name:['', [Validators.required , Validators.maxLength(20)]],
@@ -36,6 +49,8 @@ export class AddEditProductComponent implements OnInit{
       price:[null,Validators.required],
       stock:[null,Validators.required]
     })
+
+    this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
 
   // inicia
@@ -61,8 +76,26 @@ export class AddEditProductComponent implements OnInit{
 
     console.log(product);
 
-
   }
+
+
+
+
+  getProduct(id: number) {
+    this.loading = true;
+    this._productService.getProduct(id).subscribe((data: Product) => {
+      this.loading = false;
+      this.form.setValue({
+        name: data.name,
+        description: data.description,
+        price: data.price,
+        stock: data.stock
+      })
+    })
+  }
+
+
+
 
 
 
