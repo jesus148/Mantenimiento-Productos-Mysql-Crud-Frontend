@@ -1,8 +1,10 @@
 
+<!-- *ngIf="loading" : barra de progreso muestra si es true  -->
 <app-progress-bar *ngIf="loading"></app-progress-bar>
+
+
+<!-- *ngIf="!loading" : muestra si es false  -->
 <div *ngIf="!loading" class="container">
-
-
     <div class="title">
         <h4>Listado de Productos</h4>
             <!-- router link importar en este componente -->
@@ -12,14 +14,8 @@
         <button type="button" class="btn btn-primary" routerLink="/add">Agregar Producto</button>
     </div>
 
-
-
-
-
 <div class="container">
-
-
-
+  <!-- *ngIf="listProducts.length : muestra esta si productos tiene data  -->
   <table class="table table-hover" *ngIf="listProducts.length > 0" >
     <thead>
       <tr>
@@ -37,13 +33,23 @@
         <td>{{ item.price }}</td>
         <td>{{ item.stock }}</td>
         <td>
-          <!-- routerLink="/edit/{{item.id}} : ruta pero envio con parametro -->
+
+          <!-- editar -->
+          <!-- routerLink="/edit/{{item.id}} : ruta pero envio con parametro el id -->
+           <!-- en el controller de ese componete obtenerlo -->
           <button type="button" class="btn btn-info btn-sm m-2" routerLink="/edit/{{item.id}}">Edit</button>
+
+
           <button (click)="deleteProduct(item.id!)" type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
 
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- listProducts si productos es = a 0 -->
+<h5 *ngIf="listProducts.length == 0">No hay productos para mostrar</h5>
+
 </div>
 

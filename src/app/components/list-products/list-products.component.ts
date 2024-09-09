@@ -30,7 +30,7 @@ export class ListProductsComponent implements OnInit {
   //   {id: 2 , name :'Corona' ,description: 'corona con azucar' , price:4 , stock:200 }
   // ]
 
-  listProducts: Product[] = []
+  listProducts: Product[] = [];
 
   loading: boolean = false;
 
@@ -40,29 +40,28 @@ export class ListProductsComponent implements OnInit {
   // _productoService : los service comienzan con _
   constructor(private _productoService:ProductService ,  private toastr: ToastrService){
   }
-
-
-
   // inicia
   ngOnInit(): void{
     this.getListProducts();
   }
 
 
+
+
   // metodo lista
   getListProducts(){
-
+    // muestra el modal
     this.loading = true;
-    this._productoService.getListProducts().subscribe((data : any )=>{
-      console.log(data);
+    this._productoService.getListProducts().subscribe((data : Product[] )=>{
       this.loading= false;
-      this.listProducts=data.listProduct;
+      this.listProducts=data;
     })
   }
 
 
 
 
+  // metodo eliminando producto
   deleteProduct(id: number) {
     this.loading = true;
     this._productoService.deteleProduct(id).subscribe(() => {
