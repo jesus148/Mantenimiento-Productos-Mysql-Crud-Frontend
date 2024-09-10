@@ -31,25 +31,25 @@ export class ProductService {
 
 
 
-  // metodo elimina
+  // metodo elimina por id
   deteleProduct(id : number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
 
-  // metodo agrega
+  // metodo agrega o registra
   saveProduct(product: Product): Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`,product)
   }
 
 
-  // metodo obtien producto
+  // metodo obtien producto por id
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
 
-  // metodo actiualiza
+  // metodo actualiza por id , enviar el id y el objeto
   updateProduct(id: number, product: Product): Observable<void> {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, product);
   }

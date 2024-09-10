@@ -9,6 +9,7 @@
 <div *ngIf="!loading" class="row mt-3">
   <div class="col-lg-4 offset-lg-4">
     <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+      <!-- {{operacion}} : mostrara si es actualizar o agregar -->
       <div class="card-header text-center">{{operacion}} Producto </div>
       <div class="card-body">
 
@@ -47,6 +48,7 @@
             <div class="col-lg-6">
 
               <!-- routerLinkActive="router-link-active"  : hace que el botón correspondiente a la página actual se vea diferente, ayudando a los usuarios a saber dónde están dentro de la aplicación -->
+               <!-- regresa al listado  -->
               <button routerLink="/" routerLinkActive="router-link-active"  type="button"
               class="btn btn-secondary">Volver</button>
             </div>

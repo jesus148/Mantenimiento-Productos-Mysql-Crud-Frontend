@@ -18,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers,
 
+    // tiempo y estilos del tastr
     provideToastr({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',

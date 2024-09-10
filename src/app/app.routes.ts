@@ -18,6 +18,7 @@ export const routes: Routes = [
   {path:  'edit/:id' , component : AddEditProductComponent},
 
   // cualquiera ruta , esto debe ir al ultimo , es como un else
+  // cualquier ruta me redirecciona al ListProductsComponent
   {path : '**' , redirectTo:  '' , pathMatch :  'full'}
 
 ];
